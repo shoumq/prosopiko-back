@@ -15,9 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::get('/get_contacts', [ContactController::class, 'getContacts']);
+Route::post('/del_contact', [ContactController::class, 'delContact']);
+Route::post('/add_contact', [ContactController::class, 'addContact']);
+Route::post('/edit_contact', [ContactController::class, 'editContact']);
 
