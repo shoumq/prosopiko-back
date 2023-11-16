@@ -35,10 +35,19 @@ class ContactController extends Controller
     {
         $contact = ContactModel::find($request->id);
         if ($request->name) $contact->name = $request->name;
-        if ($request->surname) $contact->name = $request->surname;
-        if ($request->phone) $contact->name = $request->phone;
-        if ($request->email) $contact->name = $request->email;
+        if ($request->surname) $contact->surname = $request->surname;
+        if ($request->phone) $contact->phone = $request->phone;
+        if ($request->email) $contact->email = $request->email;
         $contact->save();
         return response()->json($contact);
+    }
+
+    public function search(Request $request): JsonResponse
+    {
+        $res = ContactModel::query()
+            ->whereRaw(
+                "TRIM(CONCAT(name, ' ', surname)) like '%{$request->body}%'"
+            )->get();
+        return response()->json($res);
     }
 }

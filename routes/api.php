@@ -19,4 +19,5 @@ Route::get('/get_contacts', [ContactController::class, 'getContacts']);
 Route::post('/del_contact', [ContactController::class, 'delContact']);
 Route::post('/add_contact', [ContactController::class, 'addContact']);
 Route::post('/edit_contact', [ContactController::class, 'editContact']);
+Route::post('/search', [ContactController::class, 'search']);
 
